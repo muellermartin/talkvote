@@ -1,0 +1,33 @@
+.talk-list {
+	padding-top: 1em;
+}
+
+.video-button {
+	filter: invert(60%);
+	-webkit-filter: invert(60%);
+	padding-top: 0.5em;
+}
+
+.video-button:hover {
+	filter: invert(0%);
+	-webkit-filter: invert(0%);
+}
+
+.talk-description {
+	border-top: 1px solid #ccc;
+	padding-top: 1em;
+}
+
+.talk-description:hover {
+	cursor: pointer;
+}
+
+.truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.hide {
+	display: none;
+}

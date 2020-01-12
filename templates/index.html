@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>36C3 Talks</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+		<script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+	</head>
+	<body>
+		<main>
+			<div class="navbar sticky-top navbar-light bg-light">
+				<a class="navbar-brand" href="{{ url_for('index' ) }}">36C3 Talks</a>
+				<form class="form-inline" action="index.html" method="GET">
+					<input class="search form-control" type="text" placeholder="Suchbegriff" />
+				</form>
+				<div class="nav-item">
+					<span class="navbar-text">Sortieren nach:</span>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button class="sort-title btn btn-light">Titel</button>
+						<button class="sort-duration btn btn-light">Dauer</button>
+						<button class="sort-votes btn btn-light">Stimmen</button>
+					</div>
+				</div>
+			</div>
+			<div class="talk-list">
+				<div class="container-fluid">
+					<div class="row row-cols-1 row-cols-md-2">
+						{% for talk in talks %}
+						<div class="col">
+							<div class="talk-item card mb-3">
+								<div class="row no-gutters">
+									<div class="col-md-1 text-center p-2">
+										<div class="vote-up"><a href="/vote?id={{ talk.id }}&vote=up"><button class="btn btn-primary">▲</button></a></div>
+										<div class="votes">{{ talk.votes if talk.votes else 0 }}</div>
+										<div class="vote-down"><a href="/vote?id={{ talk.id }}&vote=down"><button class="btn btn-primary">▼</button></a></div>
+										<a href="{{ talk.video_link }}"><img class="video-button" src="{{ url_for('static', filename='img/iconmonstr-video-camera-10.svg') }}" alt="Video" /></a>
+									</div>
+									<div class="col-md-11">
+										<div class="card-body">
+											<div class="talk-title"><strong>{{ talk.title }}</strong></div>
+											<div class="talk-speakers">by {{ talk.speakers }}</div>
+											<div class="talk-duration">{{ talk.duration }}</div>
+											<div class="talk-description truncate">{{ talk.summary|safe }}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</main>
+		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	</body>
+</html>
