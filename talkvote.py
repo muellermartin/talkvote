@@ -50,3 +50,6 @@ def index():
 		talks.append(talk)
 
 	return render_template('index.html', talks=talks, votes=votes)
+
+if __name__ == '__main__':
+	app.run()
